@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import CourseCard from "../components/CourseCard";
-import cari from "../source/target.png";
-import standard from "../source/standard.png";
-import project from "../source/project.png";
-import src from "../source/src.png";
 
 const LandingPage = ({ courses }) => {
   const featuredCourses = courses.filter((course) => course.featured);
@@ -16,9 +12,9 @@ const LandingPage = ({ courses }) => {
         <div className="container hero-content">
           <h1 className="hero-title">Transform Data into Intelligence</h1>
           <p className="hero-subtitle">
-            Phoenix Data Consulting provides expert-led training and consulting
-            services in Data Warehouse, Business Intelligence, Big Data
-            Analytics, and Cloud Technologies
+            Phoenix IT Consulting provides expert-led consulting, training, and
+            development services in Data Warehouse, Business Intelligence, Big
+            Data Analytics, Cloud, and Emerging Technologies.
           </p>
           <div className="hero-buttons">
             <Link to="/courses" className="btn btn-primary">
@@ -27,18 +23,14 @@ const LandingPage = ({ courses }) => {
             <Link to="/contact" className="btn btn-secondary">
               Get Consultation
             </Link>
-            <button
-              onClick={() =>
-                window.open(
-                  "https://www.karpithal.com",
-                  "_blank",
-                  "noopener noreferrer"
-                )
-              }
+            <a
+              href="https://www.phoenixitac.com"
+              target="_blank"
+              rel="noopener noreferrer"
               className="btn btn-accent"
             >
-              Visit Karpithal.com
-            </button>
+              Visit phoenixitac.com
+            </a>
           </div>
         </div>
       </section>
@@ -52,8 +44,8 @@ const LandingPage = ({ courses }) => {
               <div className="stat-label">Corporate Clients</div>
             </div>
             <div className="stat-item">
-              <div className="stat-number">950+</div>
-              <div className="stat-label">Trained Professionals</div>
+              <div className="stat-number">5000+</div>
+              <div className="stat-label">Learners Trained</div>
             </div>
             <div className="stat-item">
               <div className="stat-number">15+</div>
@@ -67,63 +59,113 @@ const LandingPage = ({ courses }) => {
         </div>
       </section>
 
-      {/* Why Choose Us Section */}
+      {/* Services Section */}
       <section className="section features">
         <div className="container">
-          <h2 className="section-title">Why Choose Phoenix Data Consulting?</h2>
+          <h2 className="section-title">Our Services</h2>
           <p className="section-subtitle">
-            We provide comprehensive training and consulting services that
-            deliver real results
+            Comprehensive IT solutions, consulting, and training tailored to
+            industry needs.
           </p>
 
           <div className="feature-grid">
             <div className="card feature-card">
-              <div className="feature-icon">
-                <img src={cari} alt="Career-ready curriculum" />
-              </div>
-              <h3 className="feature-title">Career-ready Curriculum</h3>
+              <h3 className="feature-title">Development</h3>
               <p>
-                Our courses are designed with industry needs in mind, ensuring
-                you gain practical skills that employers value. 950+ graduates
-                successfully placed in data roles.
+                Software development in Data Warehouse, BI, Big Data Analytics,
+                Data Visualization, SAP, Mobile Apps, and AI/ML.
               </p>
             </div>
 
             <div className="card feature-card">
-              <div className="feature-icon">
-                <img src={standard} alt="Industry tools" />
-              </div>
-              <h3 className="feature-title">Industry-Standard Tools</h3>
+              <h3 className="feature-title">Consulting</h3>
               <p>
-                Learn using professional tools including Power BI, AWS, Azure,
-                Tableau, and more. Gain hands-on experience with the
-                technologies used in real-world projects.
+                Guidance in enterprise solutions, cloud, analytics, and IT
+                strategy. End-to-end project delivery, product support, and
+                offshore models.
               </p>
             </div>
 
             <div className="card feature-card">
-              <div className="feature-icon">
-                <img src={project} alt="Hands-on projects" />
-              </div>
-              <h3 className="feature-title">Hands-on Projects</h3>
+              <h3 className="feature-title">Training</h3>
               <p>
-                85% of our curriculum is project-based learning. Build a
-                portfolio of work that demonstrates your skills to potential
-                employers.
+                Corporate & college training programs across Data Warehousing,
+                Business Intelligence, AI/ML, Big Data, SAP, and Mobile
+                Application Development.
               </p>
             </div>
 
             <div className="card feature-card">
-              <div className="feature-icon">
-                <img src={src} alt="Lifetime resources" />
-              </div>
-              <h3 className="feature-title">Lifetime Resources</h3>
+              <h3 className="feature-title">Offshore Development Center</h3>
               <p>
-                Get continuous access to updated course materials, community
-                support, and career guidance even after completing your
-                training.
+                High-quality global delivery with cost savings, scalable teams,
+                24x7 collaboration, and strong infrastructure.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Technology Expertise */}
+      <section className="section">
+        <div className="container">
+          <h2 className="section-title">Technology Expertise</h2>
+          <p className="section-subtitle">
+            Strong capabilities across Data, Cloud, and Emerging Tech.
+          </p>
+
+          <div className="feature-grid">
+            {[
+              "Informatica",
+              "Talend",
+              "SSIS",
+              "IBM Cognos",
+              "MicroStrategy",
+              "OBIEE",
+              "QlikView",
+              "Tableau",
+              "Hadoop",
+              "AI / ML",
+              "SAP Modules",
+              "Oracle",
+              "MS SQL Server",
+              "MongoDB",
+              "Cassandra",
+            ].map((tech, idx) => (
+              <div key={idx} className="card feature-card">
+                <h3 className="feature-title">{tech}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Clients Section */}
+      <section className="section features">
+        <div className="container">
+          <h2 className="section-title">Our Clients</h2>
+          <p className="section-subtitle">
+            Trusted by leading enterprises & institutions worldwide.
+          </p>
+          <div className="feature-grid">
+            {[
+              "Wipro",
+              "Accenture",
+              "Cognizant",
+              "Bank of America",
+              "Infosys",
+              "PayPal",
+              "Dell",
+              "Liberty Mutual",
+              "Emirates NBD",
+              "HCL",
+              "Mphasis",
+              "Hexaware",
+            ].map((client, idx) => (
+              <div key={idx} className="card feature-card">
+                <h3 className="feature-title">{client}</h3>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -157,7 +199,7 @@ const LandingPage = ({ courses }) => {
           <h2 className="section-title">Ready to Transform Your Career?</h2>
           <p className="section-subtitle">
             Join thousands of professionals who have advanced their careers with
-            our expert-led training programs
+            Phoenix IT Consulting’s expert-led training programs.
           </p>
           <div style={{ marginTop: "2rem" }}>
             <Link

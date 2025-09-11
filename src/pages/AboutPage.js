@@ -4,64 +4,93 @@ const AboutPage = () => {
   return (
     <div className="section">
       <div className="container">
-        <h1 className="section-title">About Phoenix Data Consulting</h1>
+        <h1 className="section-title">About Phoenix IT Consulting</h1>
+        <p className="section-subtitle">
+          Driving digital transformation since 2010 with expertise in Data, BI,
+          Big Data, Cloud, and Enterprise IT solutions.
+        </p>
 
-        <div style={{ maxWidth: "800px", margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: "3rem" }}>
-            <h2>Our Mission</h2>
+        {/* Mission */}
+        <div className="card" style={{ padding: "2rem", marginBottom: "3rem" }}>
+          <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
+            Our Mission
+          </h2>
+          <p style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}>
+            To deliver high-quality IT consulting, development, and training
+            services that empower organizations to innovate, transform, and
+            succeed in the era of Data, Cloud, and Emerging Technologies.
+          </p>
+        </div>
+
+        {/* Story / Approach / Values */}
+        <div className="feature-grid" style={{ marginBottom: "3rem" }}>
+          <div className="card feature-card" style={{ padding: "2rem" }}>
+            <h3 className="feature-title">Our Story</h3>
             <p>
-              To empower professionals and organizations with the data skills
-              needed to thrive in today's data-driven world. We believe that
-              transforming raw data into actionable intelligence is the key to
-              innovation and growth.
+              Phoenix IT Consulting is the consulting arm of Axiom Semantics,
+              founded in 2010 by industry experts with experience in India,
+              Singapore, and the US. We deliver IT solutions and training across
+              India, Dubai, Bahrain, Singapore, Malaysia, Canada, and the USA.
             </p>
           </div>
 
-          <div
-            style={{ display: "flex", flexDirection: "column", gap: "2rem" }}
+          <div className="card feature-card" style={{ padding: "2rem" }}>
+            <h3 className="feature-title">Our Approach</h3>
+            <p>
+              We combine technical expertise with practical implementation,
+              offering services in Software Development, Data Warehousing,
+              Business Intelligence, Big Data Analytics, Cloud, SAP, and Mobile
+              Applications. Our flexible delivery models ensure cost-effective
+              and scalable solutions worldwide.
+            </p>
+          </div>
+
+          <div className="card feature-card" style={{ padding: "2rem" }}>
+            <h3 className="feature-title">Our Values</h3>
+            <p>
+              We are guided by continuous skill development, international
+              collaboration, and delivering measurable value. Strong
+              partnerships, innovation, and smarter decision-making through data
+              are at the heart of what we do.
+            </p>
+          </div>
+        </div>
+
+        {/* Leadership */}
+        <div className="card" style={{ padding: "2rem", marginBottom: "3rem" }}>
+          <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
+            Our Leadership
+          </h2>
+          <p style={{ textAlign: "center", marginBottom: "1.5rem" }}>
+            Phoenix IT Consulting is led by experienced professionals with deep
+            expertise in Data, BI, and Enterprise IT delivery.
+          </p>
+          <ul
+            style={{
+              listStyle: "none",
+              padding: 0,
+              textAlign: "center",
+              fontWeight: "600",
+              fontSize: "1.1rem",
+              lineHeight: "2rem",
+            }}
           >
-            <div>
-              <h2>Our Story</h2>
-              <p>
-                Founded in 2015 by a team of data scientists and industry
-                experts, Phoenix Data Consulting emerged from a shared
-                frustration with the gap between academic data science and
-                practical business applications. We've since grown into a
-                premier destination for professionals seeking to enhance their
-                data capabilities.
-              </p>
-            </div>
+            <li>Raja Bala – Chief Executive</li>
+            <li>Baktha Kumar – Managing Director & Delivery Manager</li>
+          </ul>
+        </div>
 
-            <div>
-              <h2>Our Approach</h2>
-              <p>
-                We combine theoretical foundations with real-world applications,
-                ensuring our students not only understand concepts but can
-                implement them effectively. Our courses are continuously updated
-                to reflect the latest tools, techniques, and industry trends.
-              </p>
-            </div>
-
-            <div>
-              <h2>Our Instructors</h2>
-              <p>
-                Our team consists of industry practitioners with years of
-                experience across various sectors including technology, finance,
-                healthcare, and e-commerce. They bring real-world insights and
-                practical knowledge to every course.
-              </p>
-            </div>
-          </div>
-
-          <div style={{ marginTop: "3rem", textAlign: "center" }}>
-            <h2>Why the Name "Phoenix"?</h2>
-            <p>
-              Just as the phoenix rises transformed from its ashes, we help
-              professionals and organizations transform their raw data into
-              valuable intelligence—emerging stronger, smarter, and more
-              competitive.
-            </p>
-          </div>
+        {/* Symbolism */}
+        <div className="card" style={{ padding: "2rem" }}>
+          <h2 style={{ textAlign: "center", marginBottom: "1rem" }}>
+            Why the Name "Phoenix"?
+          </h2>
+          <p style={{ textAlign: "center", maxWidth: "700px", margin: "0 auto" }}>
+            Just as the phoenix rises transformed from its ashes, we help
+            organizations and professionals transform their raw data into
+            actionable intelligence—emerging stronger, smarter, and more
+            competitive.
+          </p>
         </div>
       </div>
     </div>
