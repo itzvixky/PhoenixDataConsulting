@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
   Mail, 
   Phone, 
@@ -15,6 +16,11 @@ import {
 } from "lucide-react";
 
 const Contact = () => {
+  const heroAnimation = useScrollAnimation();
+  const contactInfoAnimation = useScrollAnimation();
+  const formAnimation = useScrollAnimation();
+  const locationAnimation = useScrollAnimation();
+
   const contactInfo = [
     {
       icon: Mail,
@@ -73,8 +79,8 @@ const Contact = () => {
     <Layout>
       {/* Hero Section */}
       <section className="py-12 lg:py-16 bg-muted/30">
-        <div className="container px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-4">
+        <div className="container px-4" ref={heroAnimation.ref}>
+          <div className={`max-w-4xl mx-auto text-center space-y-4 transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Badge variant="outline" className="text-primary border-primary">
               Contact Us
             </Badge>
@@ -91,8 +97,8 @@ const Contact = () => {
 
       {/* Contact Form & Info */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="container" ref={contactInfoAnimation.ref}>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 transition-all duration-700 ${contactInfoAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {/* Contact Form */}
             <div className="space-y-8">
               <div className="space-y-4">
@@ -191,16 +197,16 @@ const Contact = () => {
 
       {/* Global Offices */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={locationAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${locationAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Global Offices</h2>
             <p className="text-lg text-muted-foreground">
               Our presence across multiple countries enables us to serve clients globally
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 transition-all duration-700 delay-200 ${locationAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {offices.map((office, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <MapPin className="h-6 w-6 text-primary" />
@@ -280,7 +286,7 @@ const Contact = () => {
                 <Phone className="mr-2 h-4 w-4" />
                 Call Now: +91 9344834879
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
+              <Button size="lg" variant="outline" className="border-primary-foreground text-black/50 hover:bg-primary-foreground hover:text-primary">
                 <Mail className="mr-2 h-4 w-4" />
                 Email Us
               </Button>

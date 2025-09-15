@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
   GraduationCap, 
   Building2, 
@@ -13,10 +14,20 @@ import {
   Settings,
   Users,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Briefcase,
+  Lightbulb,
+  Award
 } from "lucide-react";
 
 const Training = () => {
+  const heroAnimation = useScrollAnimation();
+  const typesAnimation = useScrollAnimation();
+  const technologiesAnimation = useScrollAnimation();
+  const partnersAnimation = useScrollAnimation();
+  const ctaAnimation = useScrollAnimation();
+  const careerBenefitsAnimation = useScrollAnimation();
+
   const trainingTypes = [
     {
       icon: GraduationCap,
@@ -111,12 +122,30 @@ const Training = () => {
     }
   ];
 
+  const careerBenefits = [
+    {
+      icon: Briefcase,
+      title: "Enhanced Employability",
+      description: "Gain skills highly sought after by top-tier IT companies."
+    },
+    {
+      icon: Lightbulb,
+      title: "Practical Knowledge",
+      description: "Bridge the gap between academic theory and industry practices."
+    },
+    {
+      icon: Award,
+      title: "Career Advancement",
+      description: "Equip yourself with the expertise to secure promotions and new opportunities."
+    }
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div className="container" ref={heroAnimation.ref}>
+          <div className={`max-w-4xl mx-auto text-center space-y-6 transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Badge variant="outline" className="text-primary border-primary">
               Training Services
             </Badge>
@@ -132,16 +161,16 @@ const Training = () => {
 
       {/* Training Types */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={typesAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${typesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Training Programs</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Tailored training approaches for different learning environments and objectives
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-700 delay-200 ${typesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {trainingTypes.map((type, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-8 space-y-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -166,16 +195,16 @@ const Training = () => {
 
       {/* Technology Training Areas */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={technologiesAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${technologiesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Technology Training Areas</h2>
             <p className="text-lg text-muted-foreground">
               Comprehensive coverage of cutting-edge technologies and industry tools
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${technologiesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {technologies.map((tech, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <tech.icon className="h-6 w-6 text-primary" />
@@ -239,15 +268,15 @@ const Training = () => {
 
       {/* Partner Institutions */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="text-center space-y-12">
+        <div className="container" ref={partnersAnimation.ref}>
+          <div className={`text-center space-y-12 transition-all duration-700 ${partnersAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold">Partner Educational Institutions</h2>
               <p className="text-lg text-muted-foreground">
                 Collaborating with leading colleges and universities for student training programs
               </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center">
+            <div className={`grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 text-center transition-all duration-700 delay-200 ${partnersAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               {[
                 "SRM Easwari",
                 "PSGR Krishnammal College for Women", 
@@ -260,7 +289,7 @@ const Training = () => {
                 "Jaya Engineering College",
                 "IFET Engineering College"
               ].map((college, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow">
+                <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                   <CardContent className="p-4">
                     <div className="w-8 h-8 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-2">
                       <GraduationCap className="h-4 w-4 text-primary" />
@@ -313,8 +342,8 @@ const Training = () => {
 
       {/* CTA */}
       <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
-        <div className="container">
-          <div className="text-center space-y-8">
+        <div className="container" ref={ctaAnimation.ref}>
+          <div className={`text-center space-y-8 transition-all duration-700 ${ctaAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Ready to Enhance Your Skills?
             </h2>
@@ -329,10 +358,35 @@ const Training = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+              <Button size="lg" variant="outline" className="border-primary-foreground text-black/50 hover:bg-primary-foreground hover:text-primary" asChild>
                 <Link to="/about">Learn More About Us</Link>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Career Benefits - New Section */}
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="container" ref={careerBenefitsAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${careerBenefitsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold">Empower Your Career</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Our training goes beyond skills, providing a pathway to professional success.
+            </p>
+          </div>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${careerBenefitsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {careerBenefits.map((benefit, index) => (
+              <Card key={index} className="hover:shadow-lg transition-all duration-300">
+                <CardContent className="p-6 text-center space-y-4">
+                  <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto">
+                    <benefit.icon className="h-6 w-6 text-primary" />
+                  </div>
+                  <h3 className="text-xl font-semibold">{benefit.title}</h3>
+                  <p className="text-muted-foreground">{benefit.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
