@@ -30,8 +30,8 @@ const ScrollToTop = () => {
       onClick={scrollToTop}
       className={`
   fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full p-0 shadow-lg
-  bg-gradient-to-r from-orange-600  to-orange-400
-  text-white hover:from-orange-400 hover:to-orange-600
+  bg-gradient-to-r from-gray-600  to-gray-900
+  text-white hover:from-gray-900 hover:to-gray-600
   transition-all duration-300 ease-in-out
   ${
     isVisible
