@@ -1,6 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
   Users, 
   Award, 
@@ -11,6 +12,12 @@ import {
 } from "lucide-react";
 
 const Team = () => {
+  const heroAnimation = useScrollAnimation();
+  const leadershipAnimation = useScrollAnimation();
+  const teamStructureAnimation = useScrollAnimation();
+  const valuesAnimation = useScrollAnimation();
+  const techAnimation = useScrollAnimation();
+
   const leadership = [
     {
       name: "Raja Bala",
@@ -99,8 +106,8 @@ const Team = () => {
     <Layout>
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div className="container" ref={heroAnimation.ref}>
+          <div className={`max-w-4xl mx-auto text-center space-y-6 transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Badge variant="outline" className="text-primary border-primary">
               Our Team
             </Badge>
@@ -117,8 +124,8 @@ const Team = () => {
 
       {/* Leadership Team */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={leadershipAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${leadershipAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Leadership Team</h2>
             <p className="text-lg text-muted-foreground">
               Industry veterans leading our strategic direction and operations
@@ -145,16 +152,16 @@ const Team = () => {
 
       {/* Department Heads */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={teamStructureAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${teamStructureAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Department Heads</h2>
             <p className="text-lg text-muted-foreground">
               Specialized leaders managing key operational areas
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto transition-all duration-700 delay-200 ${teamStructureAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {departments.map((dept, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -175,16 +182,16 @@ const Team = () => {
 
       {/* Team Structure */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={valuesAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${valuesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Team Structure</h2>
             <p className="text-lg text-muted-foreground">
               Comprehensive team structure covering all aspects of project delivery
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 transition-all duration-700 delay-200 ${valuesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {teamStructure.map((team, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-8 space-y-6">
                   <div className="flex items-center space-x-4">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -209,8 +216,8 @@ const Team = () => {
 
       {/* Team Capabilities */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container" ref={techAnimation.ref}>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-all duration-700 ${techAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">Team Capabilities</h2>
               <p className="text-lg text-muted-foreground">
@@ -232,7 +239,7 @@ const Team = () => {
               </div>
             </div>
             <div className="space-y-6">
-              <Card>
+              <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-center space-x-4">
                     <Globe className="h-8 w-8 text-primary" />

@@ -13,8 +13,15 @@ import {
   CheckCircle,
   ArrowRight
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Projects = () => {
+  const heroAnimation = useScrollAnimation();
+  const projectsAnimation = useScrollAnimation();
+  const capabilitiesAnimation = useScrollAnimation();
+  const techAnimation = useScrollAnimation();
+  const summaryAnimation = useScrollAnimation();
+
   const majorProjects = [
     {
       icon: Clock,
@@ -98,12 +105,37 @@ const Projects = () => {
     "End-to-end project delivery capabilities"
   ];
 
+  const projectSummary = [
+    {
+      metric: "On-time Delivery",
+      value: "95%",
+      description: "We consistently meet project deadlines with high-quality results."
+    },
+    {
+      metric: "Client Satisfaction",
+      value: "9/10",
+      description: "Our commitment to client partnership is reflected in our high ratings."
+    },
+    {
+      metric: "Cost Efficiency",
+      value: "30% Avg. Savings",
+      description: "Our solutions are designed to optimize costs without compromising on quality."
+    }
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div 
+            ref={heroAnimation.ref}
+            className={`max-w-4xl mx-auto text-center space-y-4 transition-all duration-700 ease-out ${
+              heroAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             <Badge variant="outline" className="text-primary border-primary">
               Project Portfolio
             </Badge>
@@ -126,9 +158,24 @@ const Projects = () => {
               Highlighting some of our most impactful project implementations
             </p>
           </div>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div 
+            ref={projectsAnimation.ref}
+            className={`grid grid-cols-1 lg:grid-cols-2 gap-6 transition-all duration-700 ease-out ${
+              projectsAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             {majorProjects.map((project, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card 
+                key={index} 
+                className={`hover:shadow-lg transition-all duration-300 ${
+                  projectsAnimation.isVisible 
+                    ? 'opacity-100 translate-y-0' 
+                    : 'opacity-0 translate-y-4'
+                }`}
+                style={{ transitionDelay: `${index * 100}ms` }}
+              >
                 <CardContent className="p-6 space-y-4">
                   <div className="flex items-start space-x-3">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
@@ -289,10 +336,41 @@ const Projects = () => {
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+              <Button size="lg" variant="outline" className="border-primary-foreground text-black/50 hover:bg-primary-foreground hover:text-primary" asChild>
                 <Link to="/services">View Services</Link>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Project Summary - New Section */}
+      <section className="py-12 lg:py-16 bg-background">
+        <div className="container px-4" ref={summaryAnimation.ref}>
+          <div className={`text-center space-y-4 mb-8 transition-all duration-700 ease-out ${
+            summaryAnimation.isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            <h2 className="text-2xl md:text-3xl font-heading font-bold">Our Project Commitments</h2>
+            <p className="text-base text-muted-foreground max-w-2xl mx-auto">
+              We focus on delivering tangible results, on time and within budget.
+            </p>
+          </div>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-all duration-700 ease-out delay-100 ${
+            summaryAnimation.isVisible 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-8'
+          }`}>
+            {projectSummary.map((item, index) => (
+              <Card key={index} className="text-center hover:shadow-md transition-shadow">
+                <CardContent className="p-6 space-y-3">
+                  <div className="text-4xl font-bold text-primary">{item.value}</div>
+                  <div className="text-lg font-semibold">{item.metric}</div>
+                  <p className="text-sm text-muted-foreground">{item.description}</p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>

@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { ChevronUp } from 'lucide-react';
-import { Button } from './button';
+import { useState, useEffect } from "react";
+import { ChevronUp } from "lucide-react";
+import { Button } from "./button";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -14,23 +14,31 @@ const ScrollToTop = () => {
       }
     };
 
-    window.addEventListener('scroll', toggleVisibility);
-    return () => window.removeEventListener('scroll', toggleVisibility);
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
   }, []);
 
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth',
+      behavior: "smooth",
     });
   };
-
-  if (!isVisible) return null;
 
   return (
     <Button
       onClick={scrollToTop}
-      className="fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full p-0 shadow-lg"
+      className={`
+  fixed bottom-6 right-6 z-50 w-12 h-12 rounded-full p-0 shadow-lg
+  bg-gradient-to-r from-orange-600  to-orange-400
+  text-white hover:from-orange-400 hover:to-orange-600
+  transition-all duration-300 ease-in-out
+  ${
+    isVisible
+      ? "opacity-100 scale-100"
+      : "opacity-0 scale-75 pointer-events-none"
+  }
+`}
       size="sm"
     >
       <ChevronUp className="h-5 w-5" />

@@ -1,6 +1,7 @@
 import Layout from "@/components/layout/Layout";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
   Building2, 
   Clock, 
@@ -14,6 +15,11 @@ import {
 } from "lucide-react";
 
 const Infrastructure = () => {
+  const heroAnimation = useScrollAnimation();
+  const facilitiesAnimation = useScrollAnimation();
+  const featuresAnimation = useScrollAnimation();
+  const benefitsAnimation = useScrollAnimation();
+
   const facilities = [
     {
       icon: Building2,
@@ -105,8 +111,8 @@ const Infrastructure = () => {
     <Layout>
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div className="container" ref={heroAnimation.ref}>
+          <div className={`max-w-4xl mx-auto text-center space-y-6 transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Badge variant="outline" className="text-primary border-primary">
               Infrastructure
             </Badge>
@@ -122,16 +128,16 @@ const Infrastructure = () => {
 
       {/* Infrastructure Facilities */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={facilitiesAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${facilitiesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Core Infrastructure</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Comprehensive infrastructure supporting all aspects of software development and client collaboration
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${facilitiesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {facilities.map((facility, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <facility.icon className="h-6 w-6 text-primary" />
@@ -155,8 +161,8 @@ const Infrastructure = () => {
 
       {/* Infrastructure Advantages */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <div className="container" ref={featuresAnimation.ref}>
+          <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center transition-all duration-700 ${featuresAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="space-y-6">
               <h2 className="text-3xl md:text-4xl font-bold">Infrastructure Advantages</h2>
               <p className="text-lg text-muted-foreground">
@@ -172,29 +178,29 @@ const Infrastructure = () => {
                 ))}
               </div>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <Card>
+            <div className={`grid grid-cols-1 sm:grid-cols-2 gap-6 transition-all duration-700 delay-200 ${featuresAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 text-center">
                   <Clock className="h-8 w-8 text-primary mx-auto mb-3" />
                   <div className="text-2xl font-bold text-primary mb-1">24/7</div>
                   <div className="text-sm text-muted-foreground">Access & Support</div>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 text-center">
                   <Zap className="h-8 w-8 text-primary mx-auto mb-3" />
                   <div className="text-2xl font-bold text-primary mb-1">100%</div>
                   <div className="text-sm text-muted-foreground">Power Backup</div>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 text-center">
                   <Shield className="h-8 w-8 text-primary mx-auto mb-3" />
                   <div className="text-2xl font-bold text-primary mb-1">Secure</div>
                   <div className="text-sm text-muted-foreground">Environment</div>
                 </CardContent>
               </Card>
-              <Card>
+              <Card className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 text-center">
                   <Server className="h-8 w-8 text-primary mx-auto mb-3" />
                   <div className="text-2xl font-bold text-primary mb-1">Scalable</div>
@@ -208,16 +214,16 @@ const Infrastructure = () => {
 
       {/* Detailed Specifications */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={benefitsAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${benefitsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">Infrastructure Specifications</h2>
             <p className="text-lg text-muted-foreground">
               Detailed breakdown of our technical infrastructure capabilities
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 delay-200 ${benefitsAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {specifications.map((spec, index) => (
-              <Card key={index}>
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-8 space-y-6">
                   <h3 className="text-2xl font-bold">{spec.category}</h3>
                   <div className="space-y-3">

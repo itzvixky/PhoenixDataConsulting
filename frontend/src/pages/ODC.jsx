@@ -3,6 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { 
   Globe, 
   TrendingDown, 
@@ -11,10 +12,19 @@ import {
   Shield, 
   Target,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  ClipboardList,
+  
+  Handshake
 } from "lucide-react";
 
 const ODC = () => {
+  const heroAnimation = useScrollAnimation();
+  const advantagesAnimation = useScrollAnimation();
+  const teamAnimation = useScrollAnimation();
+  const ctaAnimation = useScrollAnimation();
+  const processAnimation = useScrollAnimation();
+
   const advantages = [
     {
       icon: Users,
@@ -88,12 +98,33 @@ const ODC = () => {
     }
   ];
 
+  const odcProcess = [
+    {
+      step: 1,
+      title: "Requirements Gathering",
+      description: "We work closely with your team to understand project scope, goals, and technical requirements.",
+      icon: ClipboardList
+    },
+    {
+      step: 2,
+      title: "Team Assembly",
+      description: "A dedicated team with the right skills and experience is assembled for your project.",
+      icon: Users
+    },
+    {
+      step: 3,
+      title: "Seamless Integration",
+      description: "The ODC team integrates with your existing workflow and communication channels.",
+      icon: Handshake
+    }
+  ];
+
   return (
     <Layout>
       {/* Hero Section */}
       <section className="py-16 lg:py-24 bg-gradient-to-b from-muted/50 to-background">
-        <div className="container">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+        <div className="container" ref={heroAnimation.ref}>
+          <div className={`max-w-4xl mx-auto text-center space-y-6 transition-all duration-700 ${heroAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <Badge variant="outline" className="text-primary border-primary">
               Offshore Development Center
             </Badge>
@@ -109,16 +140,16 @@ const ODC = () => {
 
       {/* ODC Advantages */}
       <section className="py-16 lg:py-24">
-        <div className="container">
-          <div className="text-center space-y-4 mb-12">
+        <div className="container" ref={advantagesAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${advantagesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">ODC Advantages</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
               Our Offshore Development Center model delivers multiple benefits for your business
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${advantagesAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             {advantages.map((advantage, index) => (
-              <Card key={index} className="hover:shadow-lg transition-shadow">
+              <Card key={index} className="hover:shadow-lg transition-all duration-300 hover:scale-105">
                 <CardContent className="p-6 space-y-4">
                   <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
                     <advantage.icon className="h-6 w-6 text-primary" />
@@ -134,8 +165,8 @@ const ODC = () => {
 
       {/* Core Competencies */}
       <section className="py-16 lg:py-24 bg-muted/50">
-        <div className="container">
-          <div className="text-center space-y-12">
+        <div className="container" ref={teamAnimation.ref}>
+          <div className={`text-center space-y-12 transition-all duration-700 ${teamAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-bold">Our Primary Focus</h2>
               <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
@@ -143,9 +174,9 @@ const ODC = () => {
               </p>
             </div>
             <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 transition-all duration-700 delay-200 ${teamAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
                 {coreCompetencies.map((competency, index) => (
-                  <Card key={index} className="text-center">
+                  <Card key={index} className="text-center hover:shadow-lg transition-all duration-300 hover:scale-105">
                     <CardContent className="p-6">
                       <h3 className="text-lg font-semibold">{competency}</h3>
                     </CardContent>
@@ -239,8 +270,8 @@ const ODC = () => {
 
       {/* CTA */}
       <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
-        <div className="container">
-          <div className="text-center space-y-8">
+        <div className="container" ref={ctaAnimation.ref}>
+          <div className={`text-center space-y-8 transition-all duration-700 ${ctaAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl md:text-4xl font-bold">
               Ready to Set Up Your ODC?
             </h2>
@@ -252,10 +283,33 @@ const ODC = () => {
               <Button size="lg" variant="secondary" asChild>
                 <Link to="/contact">Discuss ODC Setup</Link>
               </Button>
-              <Button size="lg" variant="outline" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary" asChild>
+              <Button size="lg" variant="outline" className="border-primary-foreground text-black/50 hover:bg-primary-foreground hover:text-primary" asChild>
                 <Link to="/team">Meet Our Team</Link>
               </Button>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How Our ODC Works - New Section */}
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="container" ref={processAnimation.ref}>
+          <div className={`text-center space-y-4 mb-12 transition-all duration-700 ${processAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            <h2 className="text-3xl md:text-4xl font-bold">How Our ODC Works</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              A streamlined, step-by-step process designed for a smooth and efficient transition.
+            </p>
+          </div>
+          <div className={`grid grid-cols-1 md:grid-cols-3 gap-8 transition-all duration-700 delay-200 ${processAnimation.isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+            {odcProcess.map((step, index) => (
+              <div key={index} className="text-center space-y-4">
+                <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto text-primary font-bold text-2xl">
+                  {step.step}
+                </div>
+                <h3 className="text-xl font-bold">{step.title}</h3>
+                <p className="text-muted-foreground">{step.description}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>

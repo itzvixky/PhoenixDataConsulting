@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
@@ -22,12 +22,28 @@ const Header = () => {
 
   const isActive = (path) => location.pathname === path;
 
+  // Handles body scrolling when the mobile menu is open
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+  }, [isMenuOpen]);
+
+  // New useEffect hook to scroll to the top of the page on navigation
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center space-x-2">
           <div className="text-2xl font-bold text-primary">Phoenix</div>
-          <div className="text-xl font-medium text-secondary">IT Consulting</div>
+          <div className="text-xl font-medium text-secondary">
+            Data Consulting
+          </div>
         </Link>
 
         {/* Desktop Navigation */}
@@ -37,9 +53,7 @@ const Header = () => {
               key={item.name}
               to={item.href}
               className={`text-sm font-medium transition-colors hover:text-primary ${
-                isActive(item.href)
-                  ? "text-primary"
-                  : "text-muted-foreground"
+                isActive(item.href) ? "text-primary" : "text-muted-foreground"
               }`}
             >
               {item.name}
@@ -65,33 +79,33 @@ const Header = () => {
       </div>
 
       {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <div className="lg:hidden border-t bg-background">
-          <nav className="container py-4 space-y-2">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                to={item.href}
-                className={`block py-2 text-sm font-medium transition-colors hover:text-primary ${
-                  isActive(item.href)
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                }`}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {item.name}
+      <div
+        className={`fixed top-16 left-0 h-screen w-full transition-transform duration-300 ease-in-out lg:hidden bg-background ${
+          isMenuOpen ? "translate-x-0" : "-translate-x-full"
+        }`}
+      >
+        <nav className="container py-4 space-y-2">
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              to={item.href}
+              className={`block py-2 text-sm font-medium transition-colors hover:text-primary ${
+                isActive(item.href) ? "text-primary" : "text-muted-foreground"
+              }`}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              {item.name}
+            </Link>
+          ))}
+          <div className="pt-4">
+            <Button asChild className="w-full">
+              <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
+                Get Quote
               </Link>
-            ))}
-            <div className="pt-4">
-              <Button asChild className="w-full">
-                <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-                  Get Quote
-                </Link>
-              </Button>
-            </div>
-          </nav>
-        </div>
-      )}
+            </Button>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 };

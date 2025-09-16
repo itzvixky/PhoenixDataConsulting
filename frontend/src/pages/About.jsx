@@ -9,8 +9,15 @@ import {
   Eye, 
   Users 
 } from "lucide-react";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const About = () => {
+  const heroAnimation = useScrollAnimation();
+  const storyAnimation = useScrollAnimation();
+  const visionAnimation = useScrollAnimation();
+  const presenceAnimation = useScrollAnimation();
+  const timelineAnimation = useScrollAnimation();
+
   const milestones = [
     { year: "2010", event: "Company Founded", description: "Established as consulting arm of Axiom Semantics" },
     { year: "2012", event: "Global Expansion", description: "Extended services to Singapore and Middle East" },
@@ -24,9 +31,16 @@ const About = () => {
       {/* Hero Section */}
       <section className="py-12 lg:py-16 bg-muted/30">
         <div className="container px-4">
-          <div className="max-w-4xl mx-auto text-center space-y-4">
+          <div 
+            ref={heroAnimation.ref}
+            className={`max-w-4xl mx-auto text-center space-y-4 transition-all duration-700 ease-out ${
+              heroAnimation.isVisible 
+                ? 'opacity-100 translate-y-0' 
+                : 'opacity-0 translate-y-8'
+            }`}
+          >
             <Badge variant="outline" className="text-primary border-primary">
-              About Phoenix IT Consulting
+              About Phoenix Data Consulting
             </Badge>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold tracking-tight">
               Leading the Future of <span className="text-primary">IT Solutions</span>
@@ -42,10 +56,17 @@ const About = () => {
       <section className="py-12 lg:py-16">
         <div className="container px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-            <div className="space-y-4">
+            <div 
+              ref={storyAnimation.ref}
+              className={`space-y-4 transition-all duration-700 ease-out delay-200 ${
+                storyAnimation.isVisible 
+                  ? 'opacity-100 translate-x-0' 
+                  : 'opacity-0 -translate-x-8'
+              }`}
+            >
               <h2 className="text-2xl md:text-3xl font-heading font-bold">Our Story</h2>
               <p className="text-base text-muted-foreground leading-relaxed">
-                Phoenix IT Consulting was founded and grown by industry experts with 
+                Phoenix Data Consulting was founded and grown by industry experts with 
                 extensive experience across India, Singapore, and the United States. 
                 Since 2010, we have been providing cutting-edge IT solutions to clients worldwide.
               </p>

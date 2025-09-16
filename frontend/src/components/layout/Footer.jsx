@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
-            <div className="text-2xl font-bold">Phoenix IT Consulting</div>
+            <div className="text-2xl font-bold">Phoenix Data Consulting</div>
             <p className="text-sm opacity-90">
               Becoming the leader in Next Gen IT - Mobile, Social, Cloud and Big Data
             </p>
@@ -76,7 +76,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-border/20 mt-8 pt-8 text-center text-sm opacity-80">
-          <p>&copy; {new Date().getFullYear()} Phoenix IT Consulting. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Phoenix Data Consulting. All rights reserved.</p>
         </div>
       </div>
     </footer>
